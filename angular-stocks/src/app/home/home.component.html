@@ -1,0 +1,42 @@
+<div class="col-md-8 col-md-offset-2">
+  <div class="card text-center">
+    <h1>Stock Tracker</h1>
+    <div class="inputLabel">
+      <div>Enter the symbol to track</div>
+      <div>(i.e. AAPL., TSLA, GOOGL.)</div>
+    </div>
+    <form (ngSubmit)="fetchSymbol(symbolName)" #symbolForm="ngForm" autocomplete="off">
+      <div class="form-group">
+        <div class="form-inline">
+          <input
+            id="symbol"
+            name="symbol"
+            class="form-control"
+            type="text"
+            [(ngModel)]="symbolName"
+            required
+          />
+          <div
+            [hidden]="symbolForm.valid || !!symbolForm.pristine"
+            class="alert alert-danger"
+          >
+            Symbol is required
+          </div>
+          <button
+            class="form-control btn btn-default"
+            type="submit"
+            [disabled]="!symbolForm.form.valid"
+          >
+            Track Stock
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div *ngIf="stockData">
+    <pre class="card text-center" *ngFor="let stockItem of stockData;">
+      <app-stock-details [stockItem]="stockItem"></app-stock-details>
+    </pre>
+    <pre> {{stockData | json}} </pre>
+  </div>
+</div>

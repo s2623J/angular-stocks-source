@@ -1,0 +1,7 @@
+.inputLabel {
+  display: inline-flex;
+}
+
+.inputLabel div {
+  padding: 3px;
+}

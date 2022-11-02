@@ -3,7 +3,8 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  FinnhubKey: 'cdg7s4iad3ie6d1pu99gcdg7s4iad3ie6d1pu9a0'
 };
 
 /*
