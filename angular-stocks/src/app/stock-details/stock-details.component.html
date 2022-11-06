@@ -1,24 +1,45 @@
-<div *ngIf="stockItem">
-  <div class="container col-md-6">
-    <h3>{{stockItem.symbolData.description}} ({{stockItem.symbolData.displaySymbol}})</h3>
-    <div class="column col-md-3">
-      <div class="row">
-        <label>Change Today:</label>
-        <div> {{stockItem.quoteData.dp}}% </div>
+<div *ngIf="stockItem" [id]="stockItem.symbolData.displaySymbol">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <div class="panelTitle">
+        {{stockItem.symbolData.description}} ({{stockItem.symbolData.displaySymbol}})
       </div>
-      <div class="row">
-        <label>Current Price:</label>
-        <div> ${{stockItem.quoteData.c}} </div>
+      <div class="panelClose">
+        <button class="btn btn-default" title="Close" [id]="closeID"
+          (click)="removePanel()">X</button>
       </div>
     </div>
-    <div class="column col-md-3">
+    <div class="panel-body">
       <div class="row">
-        <label>Opening Price:</label>
-        <div> ${{stockItem.quoteData.o}} </div>
-      </div>
-      <div class="row">
-        <label>High Price:</label>
-        <div> ${{stockItem.quoteData.h}} </div>
+        <div class="column col-md-4">
+          <div>
+            <label>Change Today:</label>
+            <div> {{stockItem.quoteData.dp}}% </div>
+          </div>
+          <div>
+            <label>Current Price:</label>
+            <div> ${{stockItem.quoteData.c}} </div>
+          </div>
+        </div>
+        <div class="column col-md-4">
+          <div>
+            <label>Opening Price:</label>
+            <div> ${{stockItem.quoteData.o}} </div>
+          </div>
+          <div>
+            <label>High Price:</label>
+            <div> ${{stockItem.quoteData.h}} </div>
+          </div>
+        </div>
+        <div class="column col-md-4">
+          <div class="arrowUp" *ngIf="stockItem.quoteData.dp > 0; else downArrow">🡹</div>
+          <ng-template #downArrow>
+            <div class="arrowDown">
+              🡻
+            </div>
+          </ng-template>
+          <a id="backBtn" [id]="sentimentID" [routerLink]="['/sentiment', stockItem.symbolData.displaySymbol]">See Sentiment Details</a>
+        </div>
       </div>
     </div>
   </div>

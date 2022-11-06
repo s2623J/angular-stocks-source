@@ -1,7 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Stock } from '../services/stock';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { StockData } from '../services/stock-data';
-import { Symbols } from '../services/symbols';
 
 @Component({
   selector: 'app-stock-details',
@@ -10,10 +9,25 @@ import { Symbols } from '../services/symbols';
 })
 export class StockDetailsComponent implements OnInit {
   @Input() stockItem?: StockData;
+  @Output() onDelete: EventEmitter<string>;
+  closeID = '';
+  sentimentID = '';
 
-  constructor() { }
+  constructor(private activatedRoute: ActivatedRoute) {
+    this.onDelete = new EventEmitter();
+   }
 
   ngOnInit(): void {
   }
 
+  ngAfterContentInit(): void {
+    this.closeID = 'remove' + 
+      this.stockItem?.symbolData.displaySymbol;
+    this.sentimentID = 'sentiment' + 
+      this.stockItem?.symbolData.displaySymbol;
+  }
+
+  removePanel():void {
+    this.onDelete.emit();
+  }
 }

@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  FinnhubKey: 'cdg7s4iad3ie6d1pu99gcdg7s4iad3ie6d1pu9a0'
+  // FinnhubKey: 'cdg7s4iad3ie6d1pu99gcdg7s4iad3ie6d1pu9a0'
+  FinnhubKey: 'bu4f8kn48v6uehqi3cqg'
 };
 
 /*

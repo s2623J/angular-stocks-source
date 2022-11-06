@@ -1,0 +1,83 @@
+<div *ngIf="isReady; else pageLoading" class="container">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <div class="panelTitle">
+        {{sentimentData.symbolData.description}} ({{sentimentData.symbolData.displaySymbol}})
+      </div>
+    </div>
+    <div class="panel-body">
+      <div class="row">
+        <div class="column col-md-2">
+          <div>
+            <div> {{sentimentData.sentimentData.month1.month | uppercase}} </div>
+          </div>
+          <div>
+            <label>Change:</label>
+            <div> {{sentimentData.sentimentData.month1.change}} </div>
+          </div>
+          <div>
+            <label>MSPR:</label>
+            <div> {{sentimentData.sentimentData.month1.mspr}} </div>
+          </div>
+        </div>
+        <div class="column col-md-2">
+          <div class="arrowUp" *ngIf="sentimentData.sentimentData.month1.change > 0; else downArrow">🡹</div>
+          <ng-template #downArrow>
+            <div class="arrowDown">
+              🡻
+            </div>
+          </ng-template>
+        </div>
+        <div class="column col-md-2">
+          <div>
+            <div> {{sentimentData.sentimentData.month2.month | uppercase}} </div>
+          </div>
+          <div>
+            <label>Change:</label>
+            <div> {{sentimentData.sentimentData.month2.change}} </div>
+          </div>
+          <div>
+            <label>MSPR:</label>
+            <div> {{sentimentData.sentimentData.month2.mspr}} </div>
+          </div>
+        </div>
+        <div class="column col-md-2">
+          <div class="arrowUp" *ngIf="sentimentData.sentimentData.month2.change > 0; else downArrow">🡹</div>
+          <ng-template #downArrow>
+            <div class="arrowDown">
+              🡻
+            </div>
+          </ng-template>
+        </div>
+        <div class="column col-md-2">
+          <div>
+            <div> {{sentimentData.sentimentData.month3.month | uppercase}} </div>
+          </div>
+          <div>
+            <label>Change:</label>
+            <div> {{sentimentData.sentimentData.month3.change}} </div>
+          </div>
+          <div>
+            <label>MSPR:</label>
+            <div> {{sentimentData.sentimentData.month3.mspr}} </div>
+          </div>
+        </div>
+        <div class="column col-md-2">
+          <div class="arrowUp" *ngIf="sentimentData.sentimentData.month3.change > 0; else downArrow">🡹</div>
+          <ng-template #downArrow>
+            <div class="arrowDown">
+              🡻
+            </div>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+  <a [routerLink]="['/']">< Back to list of stocks</a>
+</div>
+
+<ng-template #pageLoading>
+  <div class="container" style="text-align: center; margin-top: 30px">
+    <h1>...Page data is loading</h1>
+  </div>
+</ng-template>

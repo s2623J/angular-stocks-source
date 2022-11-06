@@ -9,6 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { StockDetailsComponent } from './stock-details/stock-details.component';
+import { StocksService } from './services/stocks.service';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent, StockDetailsComponent],
@@ -19,7 +20,9 @@ import { StockDetailsComponent } from './stock-details/stock-details.component';
     HttpClientModule,
     NgxWebstorageModule.forRoot()
   ],
-  providers: [],
+  providers: [
+    StocksService
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

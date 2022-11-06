@@ -9,8 +9,8 @@
       <div class="form-group">
         <div class="form-inline">
           <input
-            id="symbol"
-            name="symbol"
+            id="stockInput"
+            name="stockInput"
             class="form-control"
             type="text"
             [(ngModel)]="symbolName"
@@ -23,6 +23,7 @@
             Symbol is required
           </div>
           <button
+          id="trackBtn"
             class="form-control btn btn-default"
             type="submit"
             [disabled]="!symbolForm.form.valid"
@@ -33,10 +34,10 @@
       </div>
     </form>
   </div>
-  <div *ngIf="stockData">
-    <pre class="card text-center" *ngFor="let stockItem of stockData;">
-      <app-stock-details [stockItem]="stockItem"></app-stock-details>
-    </pre>
-    <pre> {{stockData | json}} </pre>
+  <div *ngIf="stockData.length > 0">
+    <div class="card text-center stockDetails">
+      <app-stock-details [stockItem]="stockItem" *ngFor="let stockItem of stockData; let i=index" 
+      (onDelete)="removeStockDetails(i)"></app-stock-details>
+    </div>
   </div>
 </div>
