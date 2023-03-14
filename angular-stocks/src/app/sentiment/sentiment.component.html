@@ -73,11 +73,18 @@
       </div>
     </div>
   </div>
-  <a [routerLink]="['/']">< Back to list of stocks</a>
 </div>
+<a [routerLink]="['/']">< Back to list of stocks</a>
 
 <ng-template #pageLoading>
-  <div class="container" style="text-align: center; margin-top: 30px">
-    <h1>...Page data is loading</h1>
+  <div *ngIf="!isEmptyDataSet; else elseBlock">
+    <div class="container" style="text-align: center; margin-top: 30px">
+      <h1>...Page data is loading</h1>
+    </div>
   </div>
+  <ng-template #elseBlock>
+    <div class="container" style="text-align: center; margin-top: 30px">
+      <h1>Sorry, no sentiment data for this stock.</h1>
+    </div>
+  </ng-template>
 </ng-template>

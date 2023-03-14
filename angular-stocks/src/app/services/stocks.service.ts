@@ -48,7 +48,7 @@ export class StocksService {
     })
   }
 
-  fetchStockSentiment(symbolName: string): Promise<Sentiment> {
+  fetchStockSentiment(symbolName: string): Promise<Sentiment | null> {
     let finnhubClient = this.getFinnHubClient();
     let currMonthDate:string = this.getCurrMonthDate();
     let prevThirdMonthAgo:string = this.getPrevThirdMonthAgo();
@@ -56,16 +56,20 @@ export class StocksService {
     return new Promise((resolve, reject) => {
       finnhubClient.insiderSentiment(symbolName, prevThirdMonthAgo, currMonthDate, 
         (error: Error, data: any, response: Promise<object>) => {
-        let result1 = data.data.slice(-3);
-        let result2 = result1.map((item: any) => {
-          item.month = this.getMonth(item.month);
-          return item;
-        });
-        let result3 = {
-          month1: result2[0], 
-          month2: result2[1],
-          month3: result2[2]}
-        resolve(result3);
+          if (data.data.length > 3) {
+            let result1 = data.data.slice(-3);
+            let result2 = result1.map((item: any) => {
+              item.month = this.getMonth(item.month);
+              return item;
+            });
+            let result3 = {
+              month1: result2[0], 
+              month2: result2[1],
+              month3: result2[2]}
+            resolve(result3);
+          } else {
+            resolve(null);
+          }
       })
     })
   }

@@ -15,6 +15,7 @@ export class SentimentComponent implements OnInit {
   eventId = '';
   symbolID = '';
   isReady = false;
+  isEmptyDataSet = false;
   sentimentData: SentimentData = {
     sentimentData: {
       month1: {
@@ -75,9 +76,13 @@ export class SentimentComponent implements OnInit {
     })
 
     Promise.all([p1, p2]).then((values) => {
-      this.sentimentData.sentimentData = values[0];
-      this.sentimentData.symbolData = values[1];
-      this.isReady = true;
+      if (values[0] !== null) {
+        this.sentimentData.sentimentData = values[0];
+        this.sentimentData.symbolData = values[1];
+        this.isReady = true;
+      } else {
+        this.isEmptyDataSet = true;
+      }
       localStorage.setItem('sentimentData', JSON.stringify(this.sentimentData));
     })
   }

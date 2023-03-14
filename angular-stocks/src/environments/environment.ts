@@ -4,7 +4,6 @@
 
 export const environment = {
   production: false,
-  // FinnhubKey: 'cdg7s4iad3ie6d1pu99gcdg7s4iad3ie6d1pu9a0'
   FinnhubKey: 'bu4f8kn48v6uehqi3cqg'
 };
 
@@ -15,4 +14,3 @@ export const environment = {
  * This import should be commented out in production mode because it will have a negative impact
  * on performance if an error is thrown.
  */
-// import 'zone.js/plugins/zone-error';  // Included with Angular CLI.
